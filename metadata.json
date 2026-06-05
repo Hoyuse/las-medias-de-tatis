@@ -1,0 +1,8 @@
+{
+  "name": "Las Medias de Tatis",
+  "description": "Una tienda de medias con diseño pop-art y neobrutalista, con selector de tallas, detalles interactivos de producto, y carrito de compras dinámico.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

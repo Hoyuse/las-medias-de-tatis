@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1@display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  
+  --color-mustard: #E1AD01;
+  --color-electric: #6e00c1;
+  --color-lime: #69fd5d;
+  --color-bubblegum: #93075d;
+  --color-dark: #121212;
+}
+
+/* Custom Neo-Brutalist shadow utility */
+.brutal-shadow {
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutal-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutal-shadow-lg {
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* Android Chrome touch tap & scrolling feel optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline-color: #69fd5d;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.overflow-y-auto, .overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom compact scrollbar for seamless touch scrolling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+/* Custom cursor visual hides standard on hover query */
+@media (hover: hover) {
+  .custom-cursor-area {
+    cursor: none;
+  }
+}
+
