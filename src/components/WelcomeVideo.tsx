@@ -188,11 +188,12 @@ export default function WelcomeVideo({ theme }: WelcomeVideoProps) {
                 Escanea este QR para ver el video
               </div>
               <img
-                src={`https://chart.googleapis.com/chart?chs=260x260&cht=qr&chl=${encodeURIComponent(
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(
                   "https://las-medias-de-tatis.vercel.app/"
-                )}&chld=L|2`}
+                )}`}
                 alt="QR code para Las Medias de Tatis"
-                className="w-full h-auto mx-auto rounded-sm"
+                loading="lazy"
+                className="w-full h-auto mx-auto rounded-sm bg-white"
               />
               <p className="mt-4 text-center text-[11px] uppercase font-semibold tracking-[0.16em] text-gray-700">
                 Abre el clip en tu celular
