@@ -651,8 +651,45 @@ Acabo de hacer la solicitud en la web. Te enviaré el comprobante de transferenc
             <a href="#" className="hover:text-lime uppercase transition-colors">Terms</a>
             <a href="#" className="hover:text-lime uppercase transition-colors">Shipping</a>
           </div>
-          <div className="text-xs text-gray-400 font-mono">
-            © 2024 LAS MEDIAS DE TATIS. WEAR ART.
+          <div className="text-xs md:text-sm text-gray-400 font-mono space-y-1">
+            <p className="uppercase font-bold tracking-[0.18em]">Proyecto con licencia</p>
+            <p className="leading-snug">
+              <a
+                href="https://las-medias-de-tatis.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-lime"
+              >
+                Las Medias de Tatis
+              </a> by
+              <a
+                href="https://github.com/Hoyuse"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-lime mx-1"
+              >
+                Valeria Tatis sosa
+              </a>
+              is marked
+              <a
+                href="https://creativecommons.org/publicdomain/zero/1.0/"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-lime mx-1"
+              >
+                CC0 1.0
+              </a>
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+                alt="CC"
+                className="inline-block w-4 h-4 ml-1 align-text-bottom"
+              />
+              <img
+                src="https://mirrors.creativecommons.org/presskit/icons/zero.svg"
+                alt="Zero"
+                className="inline-block w-4 h-4 ml-1 align-text-bottom"
+              />
+            </p>
           </div>
         </div>
       </footer>

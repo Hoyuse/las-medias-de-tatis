@@ -107,73 +107,97 @@ export default function WelcomeVideo({ theme }: WelcomeVideoProps) {
         </div>
 
         {/* Right Side: Neobrutalist Frame-by-Frame Live Screen */}
-        <div className="lg:col-span-7 relative">
-          <div className="relative rounded border-4 border-black overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_#39ff14] aspect-video group bg-black">
-            
-            {/* Live Rotated Image representing the simulated Video stream */}
-            <img
-              src={FRAMES[currentFrame].url}
-              alt={FRAMES[currentFrame].title}
-              className="w-full h-full object-cover transition-opacity duration-300 select-none pointer-events-none"
-              referrerPolicy="no-referrer"
-            />
-
-            {/* Glowing Tag overlay at the top left corner of the screen */}
-            <div className="absolute top-4 left-4 bg-black/95 text-white border-2 border-black px-3 py-1 rounded font-mono text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full animate-ping bg-[#39ff14]"></span>
-              <span>{FRAMES[currentFrame].title}</span>
-            </div>
-
-            {/* Visual Screen Scanlines/Noise Layer for incredible theater feel */}
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,rgba(0,0,0,0.3)_100%)] mix-blend-overlay"></div>
-            <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.18)_50%)] bg-[length:100%_4px]"></div>
-
-            {/* Interactive Player controls container */}
-            <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-sm border-2 border-black p-3 rounded flex items-center justify-between opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+        <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_260px] gap-6 items-start">
+            <div className="relative rounded border-4 border-black overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_#39ff14] aspect-video group bg-black">
               
-              {/* Play/Pause Button */}
-              <div className="flex gap-2">
+              {/* Live Rotated Image representing the simulated Video stream */}
+              <img
+                src={FRAMES[currentFrame].url}
+                alt={FRAMES[currentFrame].title}
+                className="w-full h-full object-cover transition-opacity duration-300 select-none pointer-events-none"
+                referrerPolicy="no-referrer"
+              />
+
+              {/* Glowing Tag overlay at the top left corner of the screen */}
+              <div className="absolute top-4 left-4 bg-black/95 text-white border-2 border-black px-3 py-1 rounded font-mono text-xs font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full animate-ping bg-[#39ff14]"></span>
+                <span>{FRAMES[currentFrame].title}</span>
+              </div>
+
+              {/* Visual Screen Scanlines/Noise Layer for incredible theater feel */}
+              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,rgba(0,0,0,0.3)_100%)] mix-blend-overlay"></div>
+              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.18)_50%)] bg-[length:100%_4px]"></div>
+
+              {/* Interactive Player controls container */}
+              <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-sm border-2 border-black p-3 rounded flex items-center justify-between opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                
+                {/* Play/Pause Button */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setIsPlaying(!isPlaying)}
+                    className="flex items-center gap-1.5 bg-lime hover:bg-white text-black font-mono text-xs font-bold py-1.5 px-3 rounded border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-y-0.5 active:shadow-none cursor-pointer"
+                    title={isPlaying ? "Pausar" : "Reproducir"}
+                  >
+                    {isPlaying ? (
+                      <>
+                        <Pause className="w-3.5 h-3.5 fill-black" />
+                        <span>PAUSAR</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-3.5 h-3.5 fill-black" />
+                        <span>REPRODUCIR</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Central Active Signalling */}
+                <span className="hidden sm:inline font-mono text-[9px] font-extrabold text-neutral-400 uppercase tracking-widest">
+                  FILM LOOP AUTOPLAY
+                </span>
+
+                {/* Simple illustrative audio toggle for the reel feeling */}
                 <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="flex items-center gap-1.5 bg-lime hover:bg-white text-black font-mono text-xs font-bold py-1.5 px-3 rounded border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-y-0.5 active:shadow-none cursor-pointer"
-                  title={isPlaying ? "Pausar" : "Reproducir"}
+                  onClick={() => setIsMuted(!isMuted)}
+                  className={`p-1.5 rounded border-2 border-black transition-all active:translate-y-0.5 active:shadow-none cursor-pointer ${
+                    isMuted 
+                      ? "bg-red-500 text-white hover:bg-red-400" 
+                      : "bg-[#00ffff] text-black hover:bg-white"
+                  }`}
+                  title={isMuted ? "Activar Audio" : "Silenciar"}
                 >
-                  {isPlaying ? (
-                    <>
-                      <Pause className="w-3.5 h-3.5 fill-black" />
-                      <span>PAUSAR</span>
-                    </>
+                  {isMuted ? (
+                    <VolumeX className="w-4 h-4" />
                   ) : (
-                    <>
-                      <Play className="w-3.5 h-3.5 fill-black" />
-                      <span>REPRODUCIR</span>
-                    </>
+                    <Volume2 className="w-4 h-4" />
                   )}
                 </button>
               </div>
-
-              {/* Central Active Signalling */}
-              <span className="hidden sm:inline font-mono text-[9px] font-extrabold text-neutral-400 uppercase tracking-widest">
-                FILM LOOP AUTOPLAY
-              </span>
-
-              {/* Simple illustrative audio toggle for the reel feeling */}
-              <button
-                onClick={() => setIsMuted(!isMuted)}
-                className={`p-1.5 rounded border-2 border-black transition-all active:translate-y-0.5 active:shadow-none cursor-pointer ${
-                  isMuted 
-                    ? "bg-red-500 text-white hover:bg-red-400" 
-                    : "bg-[#00ffff] text-black hover:bg-white"
-                }`}
-                title={isMuted ? "Activar Audio" : "Silenciar"}
-              >
-                {isMuted ? (
-                  <VolumeX className="w-4 h-4" />
-                ) : (
-                  <Volume2 className="w-4 h-4" />
-                )}
-              </button>
             </div>
+
+            <a
+              href="https://las-medias-de-tatis.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="group block rounded-lg border-4 border-black bg-white p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-y-1 xl:h-full"
+              title="Abrir el reel en el sitio"
+            >
+              <div className="mb-4 text-center font-mono text-xs uppercase tracking-[0.24em] font-bold text-black">
+                Escanea este QR para ver el video
+              </div>
+              <img
+                src={`https://chart.googleapis.com/chart?chs=260x260&cht=qr&chl=${encodeURIComponent(
+                  "https://las-medias-de-tatis.vercel.app/"
+                )}&chld=L|2`}
+                alt="QR code para Las Medias de Tatis"
+                className="w-full h-auto mx-auto rounded-sm"
+              />
+              <p className="mt-4 text-center text-[11px] uppercase font-semibold tracking-[0.16em] text-gray-700">
+                Abre el clip en tu celular
+              </p>
+            </a>
           </div>
         </div>
       </div>
